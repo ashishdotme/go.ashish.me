@@ -25,7 +25,7 @@ const ItemCards = (props: { results: Link[] }) => {
               </div>
               <div className='media-content'>
                 <div className='content'>
-                  <a href={`https://go.ashish.me/#${item.hash}`}>{`go.ashish.me/#${item.hash}`}</a>
+                  <a target='_blank' href={`https://go.ashish.me/#${item.hash}`} rel='noopener noreferrer'>{`go.ashish.me/#${item.hash}`}</a>
                   <p className="has-text-grey-light">
                     <small>{item.url}</small>
                     <br />
