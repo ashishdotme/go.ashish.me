@@ -74,7 +74,7 @@ class ItemsList extends React.Component<ItemsListProps, State> {
     this.props.fetchItemList()
   }
 
-  public handleUserInput = e => {
+  public handleUserInput = (e) => {
     const value = e.target.value
     this.setState({ originalUrl: value })
   }
@@ -90,8 +90,8 @@ class ItemsList extends React.Component<ItemsListProps, State> {
       }
 
       axios
-        .post('https://api.ashish.me/shorten', reqObj)
-        .then(json => {
+        .post('https://systemapi.prod.ashish.me/shorten', reqObj)
+        .then((json) => {
           setTimeout(() => {
             this.props.fetchItemList()
             this.setState({
@@ -152,20 +152,18 @@ class ItemsList extends React.Component<ItemsListProps, State> {
   }
 
   public getFilteredItems = (results: Link[]) => {
-    const { searchTerm } = this.state;
+    const { searchTerm } = this.state
     if (searchTerm && !_.isEmpty(searchTerm)) {
-      results = results.filter(item =>
-        item.url.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      results = results.filter((item) => item.url.toLowerCase().includes(searchTerm.toLowerCase()))
     }
-    return results;
-  };
+    return results
+  }
 
   render() {
     const { results } = this.props
     const { sortBy, sortOrder, sortList } = this.state
-    let filteredResults = this.getFilteredItems(results);
-    filteredResults = this.getSortedItems(filteredResults);
+    let filteredResults = this.getFilteredItems(results)
+    filteredResults = this.getSortedItems(filteredResults)
     let currentPage = 1
     if (this.props.match.params.id && Number(this.props.match.params.id) > 0) {
       if (Number(this.props.match.params.id) * 12 - 11 <= filteredResults.length) {
@@ -212,7 +210,7 @@ class ItemsList extends React.Component<ItemsListProps, State> {
                     <div className='field has-addons'>
                       <div className='control shorten-url'>
                         <a target='_blank' href={this.state.shortenUrl} rel='noopener noreferrer'>
-                          <input className="input" type="text" value={this.state.shortenUrl} disabled/>
+                          <input className='input' type='text' value={this.state.shortenUrl} disabled />
                         </a>
                       </div>
                       <div className='control'>
